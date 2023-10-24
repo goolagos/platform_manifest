@@ -1269,4 +1269,5 @@
 
   <!-- END open-source projects -->
   <include name="snippets/hentai.xml" />
+  <include name="snippets/clo.xml" />
 </manifest>

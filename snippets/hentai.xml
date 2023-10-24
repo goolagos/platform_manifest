@@ -21,6 +21,18 @@
           fetch="https://github.com/hentaiOS"
           revision="refs/heads/Ursamoon" />
 
+  <remote name="github/goolagos"
+          fetch="https://github.com/goolagos"
+          revision="refs/heads/Ursamoon" />
+
+  <remote  name="statix"
+           revision="refs/heads/tm-qpr3"
+           fetch="https://github.com/StatiXOS" />
+
+  <remote  name="staging"
+	   revision="refs/heads/udc"
+	   fetch="https://github.com/stx-staging" />
+
   <remote name="gitlab/hentaiOS"
           fetch="https://gitlab.hentaios.com/hentaiOS"
           revision="refs/heads/Ursamoon" />
@@ -63,15 +75,15 @@
   <remove-project name="device/google/zuma-sepolicy" />
   <remove-project name="platform/bootable/recovery" />
   <remove-project name="platform/build" />
+  <remove-project name="platform/frameworks/av" />
   <remove-project name="platform/frameworks/base" />
   <remove-project name="platform/frameworks/native" />
+  <remove-project name="platform/hardware/libhardware" />
+  <remove-project name="platform/hardware/interfaces" />
   <remove-project name="platform/system/core" />
-  <remove-project name="platform/hardware/qcom/sm7250/display" />
-  <remove-project name="platform/hardware/qcom/sm7250/media" />
-  <remove-project name="platform/hardware/qcom/sm7250/gps" />
 
   <!-- hentaiOSのスタート -->
-  <project path="build/make" name="platform_build" groups="pdk" remote="github/hentaiOS" >
+  <project path="build/make" name="platform_build" groups="pdk" remote="github/goolagos" >
     <copyfile src="core/root.mk" dest="Makefile" />
     <linkfile src="CleanSpec.mk" dest="build/CleanSpec.mk" />
     <linkfile src="buildspec.mk.default" dest="build/buildspec.mk.default" />
@@ -82,26 +94,23 @@
   </project>
   <project path="bootable/recovery" name="platform_bootable_recovery" groups="pdk" remote="github/hentaiOS" />
   <project path="external/json-c" name="platform_external_json-c" groups="pdk" remote="github/hentaiOS" />
-  <project path="frameworks/base" name="platform_frameworks_base" groups="pdk-cw-fs,pdk-fs" remote="github/hentaiOS" />
-  <project path="frameworks/native" name="platform_frameworks_native" groups="pdk" remote="github/hentaiOS" />
-  <project path="hardware/qcom/sm7250/display" name="platform_hardware_qcom_sm7250_display" groups="pdk" remote="github/hentaiOS" />
-  <project path="hardware/qcom/sm7250/media" name="platform_hardware_qcom_sm7250_media" groups="pdk" remote="github/hentaiOS" />
-  <project path="hardware/qcom/sm7250/gps" name="platform_hardware_qcom_sm7250_gps" groups="pdk" remote="github/hentaiOS" >
-    <linkfile src="os_pickup.mk" dest="hardware/qcom/sm7250/Android.mk" />
-    <linkfile src="os_pickup.bp" dest="hardware/qcom/sm7250/Android.bp" />
-  </project>
-  <project path="system/core" name="platform_system_core" groups="pdk" remote="github/hentaiOS" />
+  <project path="frameworks/av" name="platform_frameworks_av" groups="pdk-cw-fs,pdk-fs" remote="github/goolagos" />
+  <project path="frameworks/base" name="platform_frameworks_base" groups="pdk-cw-fs,pdk-fs" remote="github/goolagos" />
+  <project path="frameworks/native" name="platform_frameworks_native" groups="pdk" remote="github/goolagos" />
+  <project path="system/core" name="platform_system_core" groups="pdk" remote="github/goolagos" />
   <project path="packages/apps/Updater" name="platform_packages_apps_Updater" groups="pdk-fs" remote="github/hentaiOS" />
   <project path="packages/apps/RepainterServicePriv" name="platform_packages_apps_RepainterServicePriv" groups="pdk-fs" remote="github/hentaiOS" />
-  <project path="vendor/codeaurora/telephony" name="platform_vendor_codeaurora_telephony" groups="vendor" remote="github/hentaiOS" />
   <project path="vendor/gms" name="platform_vendor_gms" groups="vendor" remote="gitlab/hentaiOS" clone-depth="1" />
-  <project path="vendor/hentai" name="platform_vendor_hentai" groups="vendor" remote="github/hentaiOS" />
-  <project path="vendor/qcom/opensource/data-ipa-cfg-mgr" name="platform_vendor_qcom_opensource_data-ipa-cfg-mgr" groups="vendor" remote="github/hentaiOS" />
-  <project path="vendor/qcom/opensource/dataservices" name="platform_vendor_qcom_opensource_dataservices" groups="vendor" remote="github/hentaiOS" />
-  <project path="vendor/qcom/opensource/interfaces" name="platform_vendor_qcom_opensource_interfaces" groups="vendor" remote="github/hentaiOS" />
-  <project path="vendor/qcom/opensource/power" name="platform_vendor_qcom_opensource_power" groups="vendor" remote="github/hentaiOS" />
-
+  <project path="vendor/hentai" name="platform_vendor_hentai" groups="vendor" remote="github/goolagos" />
+  
   <!-- Additions from LineageOS -->
   <project path="prebuilts/extract-tools" name="android_prebuilts_extract-tools" remote="github/LineageOS" />
   <project path="prebuilts/tools-hentai" name="android_prebuilts_tools-lineage" remote="github/LineageOS" />
+  <project path="hardware/lineage/compat" name="android_hardware_lineage_compat" remote="github/LineageOS" revision="lineage-20.0" />
+  
+  <!-- Additions from StatiXOS -->
+    <project path="hardware/statix/interfaces" name="android_hardware_statix_interfaces" remote="statix" />
+  <project path="hardware/interfaces" name="android_hardware_interfaces" remote="staging" />
+  <project path="hardware/libhardware" name="android_hardware_libhardware" remote="staging" />
+  <project path="packages/resources/devicesettings" name="android_packages_resources_devicesettings" remote="statix" />
 </manifest>
